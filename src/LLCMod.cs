@@ -16,11 +16,11 @@ namespace LimbusLocalize;
 [BepInPlugin(Guid, Name, Version)]
 public class LLCMod : BasePlugin
 {
-    public const string Guid = "Com.Bright.LocalizeLimbusCompany";
-    public const string Name = "LimbusLocalizeMod";
-    public const string Version = "0.6.59";
+    public const string Guid = "Com.Bright.LLC_ModCompatible";
+    public const string Name = "LLC_ModCompatible";
+    public const string Version = "0.6.59m";
     public const string Author = "Bright";
-    public const string LLCLink = "https://github.com/LocalizeLimbusCompany/LocalizeLimbusCompany";
+    public const string LLCLink = "https://github.com/ImYiFeng/LLC_ModCompatible";
     public static ConfigFile LLCSettings;
     public static string ModPath;
     public static string GamePath;
@@ -103,49 +103,49 @@ public class LLCMod : BasePlugin
     {
         try
         {
-            //Check BepInEx mod
-            if (IL2CPPChainloader.Instance.Plugins.Keys.Any(guid => !guid.StartsWith("Com.Bright.")))
-                return OpenGlobalPopup("Invalid assemblies.\nUnable to run game.");
-            //Check visual mod
-            if (OperatingSystem.IsWindows())
-            {
-                var steamPath =
-                    Registry.GetValue(@"HKEY_CURRENT_USER\Software\Valve\Steam", "SteamPath", null) as string;
-                var userdata = long.Parse(LoginInfoManager.Instance.SteamID) - 76561197960265728;
-                var lines = File.ReadAllLines($"{steamPath}/userdata/{userdata}/config/localconfig.vdf");
-                var start = false;
-                var end = false;
-                var has = false;
-                foreach (var line in lines)
-                {
-                    if (!start)
-                    {
-                        if ("\t\t\t\t\t\"1973530\"".Equals(line))
-                            start = true;
-                        continue;
-                    }
+            // //Check BepInEx mod
+            // if (IL2CPPChainloader.Instance.Plugins.Keys.Any(guid => !guid.StartsWith("Com.Bright.")))
+            //     return OpenGlobalPopup("Invalid assemblies.\nUnable to run game.");
+            // //Check visual mod
+            // if (OperatingSystem.IsWindows())
+            // {
+            //     var steamPath =
+            //         Registry.GetValue(@"HKEY_CURRENT_USER\Software\Valve\Steam", "SteamPath", null) as string;
+            //     var userdata = long.Parse(LoginInfoManager.Instance.SteamID) - 76561197960265728;
+            //     var lines = File.ReadAllLines($"{steamPath}/userdata/{userdata}/config/localconfig.vdf");
+            //     var start = false;
+            //     var end = false;
+            //     var has = false;
+            //     foreach (var line in lines)
+            //     {
+            //         if (!start)
+            //         {
+            //             if ("\t\t\t\t\t\"1973530\"".Equals(line))
+            //                 start = true;
+            //             continue;
+            //         }
 
-                    if (line.Contains("\"LastPlayed\""))
-                        if (!end)
-                            end = true;
-                        else
-                            break;
-                    var launchOptions = "\t\t\t\t\t\t\"LaunchOptions\"\t\t";
-                    if (!line.Contains(launchOptions)) continue;
-                    launchOptions = line[launchOptions.Length..];
-                    if (launchOptions.Contains("%command%"))
-                        has = true;
-                    break;
-                }
+            //         if (line.Contains("\"LastPlayed\""))
+            //             if (!end)
+            //                 end = true;
+            //             else
+            //                 break;
+            //         var launchOptions = "\t\t\t\t\t\t\"LaunchOptions\"\t\t";
+            //         if (!line.Contains(launchOptions)) continue;
+            //         launchOptions = line[launchOptions.Length..];
+            //         if (launchOptions.Contains("%command%"))
+            //             has = true;
+            //         break;
+            //     }
 
-                if (has) return OpenGlobalPopup("Invalid parameters.\nUnable to run game.");
-            }
+            //     if (has) return OpenGlobalPopup("Invalid parameters.\nUnable to run game.");
+            // }
 
-            //Check private server
-            var hostEntry = Dns.GetHostEntry("www.limbuscompanyapi.com");
-            var ip = hostEntry.AddressList[0].ToString();
-            if (ip.StartsWith("127.0.") || ip.StartsWith("192.168."))
-                return OpenGlobalPopup("Remote address loopback error.\nUnable to run game.");
+            // //Check private server
+            // var hostEntry = Dns.GetHostEntry("www.limbuscompanyapi.com");
+            // var ip = hostEntry.AddressList[0].ToString();
+            // if (ip.StartsWith("127.0.") || ip.StartsWith("192.168."))
+            //     return OpenGlobalPopup("Remote address loopback error.\nUnable to run game.");
         }
         catch (Exception e)
         {
@@ -154,12 +154,12 @@ public class LLCMod : BasePlugin
 
         return true;
 
-        bool OpenGlobalPopup(string description)
-        {
-            Action action = Application.Quit;
-            Manager.OpenGlobalPopup(description, null,
-                null, TextDataManager.Instance.LoginUIList.GetData("loginui_ok"), action, action);
-            return false;
-        }
+        // bool OpenGlobalPopup(string description)
+        // {
+        //     Action action = Application.Quit;
+        //     Manager.OpenGlobalPopup(description, null,
+        //         null, TextDataManager.Instance.LoginUIList.GetData("loginui_ok"), action, action);
+        //     return false;
+        // }
     }
 }
