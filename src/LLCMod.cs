@@ -18,7 +18,7 @@ public class LLCMod : BasePlugin
 {
     public const string Guid = "Com.Bright.LLC_ModCompatible";
     public const string Name = "LLC_ModCompatible";
-    public const string Version = "0.6.59m";
+    public const string Version = "0.6.595";
     public const string Author = "Bright";
     public const string LLCLink = "https://github.com/ImYiFeng/LLC_ModCompatible";
     public static ConfigFile LLCSettings;
