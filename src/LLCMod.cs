@@ -16,11 +16,11 @@ namespace LimbusLocalize;
 [BepInPlugin(Guid, Name, Version)]
 public class LLCMod : BasePlugin
 {
-    public const string Guid = "Com.Bright.LocalizeLimbusCompany";
-    public const string Name = "LimbusLocalizeMod";
-    public const string Version = "0.6.60";
+    public const string Guid = "Com.Bright.LLC_ModCompatible";
+    public const string Name = "LLC_ModCompatible";
+    public const string Version = "0.6.605";
     public const string Author = "Bright";
-    public const string LLCLink = "https://github.com/LocalizeLimbusCompany/LocalizeLimbusCompany";
+    public const string LLCLink = "https://github.com/ImYiFeng/LLC_ModCompatible";
     public static ConfigFile LLCSettings;
     public static string ModPath;
     public static string GamePath;
