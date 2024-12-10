@@ -1,8 +1,3 @@
-<div align="center">
-<a href="https://github.com/LocalizeLimbusCompany/LocalizeLimbusCompany">
-   <img src="https://avatars.githubusercontent.com/u/129521269" />
-</a>
-
 # LLC_ModCompatible
 二改版零协汉化模组，移除模组检测机制
 
